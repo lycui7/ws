@@ -27,3 +27,8 @@ func (m *Message) GetType() int32 {
 func (m *Message) GetTo() string {
 	return m.To
 }
+
+// GetFrom 获取发送人
+func (m *Message) GetFrom() string {
+	return m.From
+}

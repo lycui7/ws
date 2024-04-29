@@ -6,4 +6,5 @@ type IMessage interface {
 	Unmarshal(data []byte) error
 	GetType() int32
 	GetTo() string
+	GetFrom() string
 }
