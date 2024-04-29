@@ -63,19 +63,19 @@ func (a *Admin) SendMsg(funcName string) func(c *gin.Context) {
 // HandlerWS 注册web路由
 func (a *Admin) HandlerWS(funcName string, options *websocket.AcceptOptions) func(c *gin.Context) {
 	return func(c *gin.Context) {
+		// 校验
+		key, ok := a.CheckWs(funcName, c)
+		if !ok {
+			a.Logger.Info("身份校验失败:")
+			//_ = conn.Close(websocket.StatusInvalidFramePayloadData, "身份校验失败")
+			c.Status(401)
+			return
+		}
 		// 升级连接
 		conn, err := websocket.Accept(c.Writer, c.Request, options)
 		if err != nil {
 			a.Logger.Info("ws升级失败:", zap.Any("err", err))
 			c.Status(101)
-			return
-		}
-		// 校验
-		key, ok := a.CheckWs(funcName, c)
-		if !ok {
-			a.Logger.Info("身份校验失败:")
-			_ = conn.Close(websocket.StatusInvalidFramePayloadData, "身份校验失败")
-			c.Status(401)
 			return
 		}
 		defer conn.Close(websocket.StatusNormalClosure, "")
