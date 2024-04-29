@@ -4,7 +4,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/flipped-aurora/ws/core/biz"
+	"github.com/lycui7/ws/core/biz"
 )
 
 type Handle struct {

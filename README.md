@@ -36,8 +36,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"github.com/flipped-aurora/ws/internal/biz"
-	"github.com/flipped-aurora/ws/internal/data"
+	"github.com/lycui7/ws/internal/biz"
+	"github.com/lycui7/ws/internal/data"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
